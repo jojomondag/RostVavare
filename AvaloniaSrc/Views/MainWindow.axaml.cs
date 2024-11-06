@@ -19,7 +19,9 @@ namespace RöstVävare.Views
         {
             InitializeComponent();
             // Initialize WhisperService if available
-            _whisperService = new WhisperService("ggml-large-v3-turbo.bin");
+            var selectedModelType = (GgmlType)ModelTypeComboBox.SelectedIndex;
+            _whisperService = new WhisperService("ggml-large-v3-turbo.bin", selectedModelType);
+            ModelTypeComboBox.SelectionChanged += ModelTypeComboBox_SelectionChanged;
         }
 
         private async void RunButton_Click(object sender, RoutedEventArgs e)
@@ -52,7 +54,7 @@ namespace RöstVävare.Views
             try
             {
                 // Ensure WhisperService methods are available
-                await _whisperService.DownloadModelAsync();
+                await _whisperService.DownloadModelIfNotPresent();
 
                 switch (command)
                 {
@@ -110,6 +112,13 @@ namespace RöstVävare.Views
                 var file = result[0];
                 FileTextBox.Text = file.Path.LocalPath;
             }
+        }
+
+        private void ModelTypeComboBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+        {
+            var selectedModelType = (GgmlType)ModelTypeComboBox.SelectedIndex;
+            _whisperService = new WhisperService("ggml-large-v3-turbo.bin", selectedModelType);
+            SelectedModelTextBlock.Text = ModelTypeComboBox.SelectedItem.ToString();
         }
     }
 }
