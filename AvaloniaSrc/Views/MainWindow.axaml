@@ -84,6 +84,33 @@
                              Text="auto"/>
                 </Grid>
 
+                <!-- Model Type Selection -->
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Select Model Type:"
+                               VerticalAlignment="Center"/>
+                    <ComboBox x:Name="ModelTypeComboBox"
+                              SelectedIndex="0"
+                              Grid.Column="1"
+                              Margin="10,0,0,0">
+                        <ComboBoxItem Content="Tiny"/>
+                        <ComboBoxItem Content="TinyEn"/>
+                        <ComboBoxItem Content="Base"/>
+                        <ComboBoxItem Content="BaseEn"/>
+                        <ComboBoxItem Content="Small"/>
+                        <ComboBoxItem Content="SmallEn"/>
+                        <ComboBoxItem Content="Medium"/>
+                        <ComboBoxItem Content="MediumEn"/>
+                        <ComboBoxItem Content="LargeV1"/>
+                        <ComboBoxItem Content="LargeV2"/>
+                        <ComboBoxItem Content="LargeV3"/>
+                        <ComboBoxItem Content="LargeV3Turbo"/>
+                    </ComboBox>
+                </Grid>
+
                 <!-- Run Button -->
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right">
