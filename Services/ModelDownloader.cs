@@ -35,7 +35,7 @@ public static class ModelDownloader
     private static async Task<Stream> GetGgmlModelAsync(GgmlType type, CancellationToken cancellationToken = default)
     {
         var modelName = GetModelName(type);
-        var url = $"https://huggingface.co/sandrohanea/whisper.net/resolve/v3/{modelName}.bin";
+        var url = $"https://huggingface.co/sandrohanea/whisper.net/resolve/v3/classic/{modelName}.bin";
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         var response = await httpClient.Value.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
         response.EnsureSuccessStatusCode();
