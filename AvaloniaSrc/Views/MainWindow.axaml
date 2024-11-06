@@ -10,141 +10,140 @@
         mc:Ignorable="d">
 
     <Grid Margin="20">
-        <!-- Define Rows -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/> <!-- Header -->
-            <RowDefinition Height="Auto"/> <!-- Input Section -->
-            <RowDefinition Height="Auto"/> <!-- New Component -->
-            <RowDefinition Height="*"/>    <!-- Output Section -->
-        </Grid.RowDefinitions>
+        <!-- Define Columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/> <!-- Settings Section -->
+            <ColumnDefinition Width="3*"/> <!-- Output Section -->
+        </Grid.ColumnDefinitions>
 
-        <!-- Header -->
-        <TextBlock Text="Whisper Integration with Avalonia"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,20"
-                   Grid.Row="0"/>
+        <!-- Settings Section -->
+        <StackPanel Grid.Column="0" Margin="0,0,20,0">
+            <!-- Header -->
+            <TextBlock Text="Whisper Integration with Avalonia"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
 
-        <!-- Input Section -->
-        <Border BorderBrush="#DDD"
-                BorderThickness="1"
-                CornerRadius="5"
-                Padding="15"
-                Grid.Row="1">
-            <StackPanel>
-                <!-- Command Selection -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Select Command:"
-                               VerticalAlignment="Center"/>
-                    <ComboBox x:Name="CommandComboBox"
-                              SelectedIndex="0"
-                              Grid.Column="1"
-                              Margin="10,0,0,0">
-                        <ComboBoxItem Content="Language Detection"/>
-                        <ComboBoxItem Content="Transcribe"/>
-                        <ComboBoxItem Content="Translate"/>
-                    </ComboBox>
-                </Grid>
+            <!-- Input Section -->
+            <Border BorderBrush="#DDD"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Padding="15">
+                <StackPanel>
+                    <!-- Command Selection -->
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Select Command:"
+                                   VerticalAlignment="Center"/>
+                        <ComboBox x:Name="CommandComboBox"
+                                  SelectedIndex="0"
+                                  Grid.Column="1"
+                                  Margin="10,0,0,0">
+                            <ComboBoxItem Content="Language Detection"/>
+                            <ComboBoxItem Content="Transcribe"/>
+                            <ComboBoxItem Content="Translate"/>
+                        </ComboBox>
+                    </Grid>
 
-                <!-- Audio File Selection -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Audio File:"
-                               VerticalAlignment="Center"/>
-                    <TextBox x:Name="FileTextBox"
-                             Grid.Column="1"
-                             Margin="10,0,0,0"/>
-                    <Button Content="Browse..."
-                            Click="BrowseButton_Click"
-                            Width="100"
-                            Grid.Column="2"
-                            Margin="10,0,0,0"/>
-                </Grid>
+                    <!-- Audio File Selection -->
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Audio File:"
+                                   VerticalAlignment="Center"/>
+                        <TextBox x:Name="FileTextBox"
+                                 Grid.Column="1"
+                                 Margin="10,0,0,0"/>
+                        <Button Content="Browse..."
+                                Click="BrowseButton_Click"
+                                Width="100"
+                                Grid.Column="2"
+                                Margin="10,0,0,0"/>
+                    </Grid>
 
-                <!-- Language Input -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Language:"
-                               VerticalAlignment="Center"/>
-                    <TextBox x:Name="LanguageTextBox"
-                             Grid.Column="1"
-                             Margin="10,0,0,0"
-                             Text="auto"/>
-                </Grid>
+                    <!-- Language Input -->
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Language:"
+                                   VerticalAlignment="Center"/>
+                        <TextBox x:Name="LanguageTextBox"
+                                 Grid.Column="1"
+                                 Margin="10,0,0,0"
+                                 Text="auto"/>
+                    </Grid>
 
-                <!-- Model Type Selection -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Select Model Type:"
-                               VerticalAlignment="Center"/>
-                    <ComboBox x:Name="ModelTypeComboBox"
-                              SelectedIndex="0"
-                              Grid.Column="1"
-                              Margin="10,0,0,0">
-                        <ComboBoxItem Content="Tiny"/>
-                        <ComboBoxItem Content="TinyEn"/>
-                        <ComboBoxItem Content="Base"/>
-                        <ComboBoxItem Content="BaseEn"/>
-                        <ComboBoxItem Content="Small"/>
-                        <ComboBoxItem Content="SmallEn"/>
-                        <ComboBoxItem Content="Medium"/>
-                        <ComboBoxItem Content="MediumEn"/>
-                        <ComboBoxItem Content="LargeV1"/>
-                        <ComboBoxItem Content="LargeV2"/>
-                        <ComboBoxItem Content="LargeV3"/>
-                        <ComboBoxItem Content="LargeV3Turbo"/>
-                    </ComboBox>
-                </Grid>
+                    <!-- Model Type Selection -->
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Select Model Type:"
+                                   VerticalAlignment="Center"/>
+                        <ComboBox x:Name="ModelTypeComboBox"
+                                  SelectedIndex="0"
+                                  Grid.Column="1"
+                                  Margin="10,0,0,0">
+                            <ComboBoxItem Content="Tiny"/>
+                            <ComboBoxItem Content="TinyEn"/>
+                            <ComboBoxItem Content="Base"/>
+                            <ComboBoxItem Content="BaseEn"/>
+                            <ComboBoxItem Content="Small"/>
+                            <ComboBoxItem Content="SmallEn"/>
+                            <ComboBoxItem Content="Medium"/>
+                            <ComboBoxItem Content="MediumEn"/>
+                            <ComboBoxItem Content="LargeV1"/>
+                            <ComboBoxItem Content="LargeV2"/>
+                            <ComboBoxItem Content="LargeV3"/>
+                            <ComboBoxItem Content="LargeV3Turbo"/>
+                        </ComboBox>
+                    </Grid>
 
-                <!-- Selected Model Display -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Selected Model:"
-                               VerticalAlignment="Center"/>
-                    <TextBlock x:Name="SelectedModelTextBlock"
-                               Grid.Column="1"
-                               Margin="10,0,0,0"/>
-                </Grid>
+                    <!-- Selected Model Display -->
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Selected Model:"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock x:Name="SelectedModelTextBlock"
+                                   Grid.Column="1"
+                                   Margin="10,0,0,0"/>
+                    </Grid>
 
-                <!-- Run Button -->
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Right">
-                    <Button Content="Run"
-                            Click="RunButton_Click"
-                            Width="100"
-                            Margin="0,20,0,0"/>
+                    <!-- Run Button -->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Button Content="Run"
+                                Click="RunButton_Click"
+                                Width="100"
+                                Margin="0,20,0,0"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Border>
+            </Border>
 
-        <!-- New Component -->
-        <components:MyNewComponent Grid.Row="2" Margin="0,20,0,0"/>
+            <!-- New Component -->
+            <components:MyNewComponent Margin="0,20,0,0"/>
+        </StackPanel>
 
         <!-- Output Section -->
         <Border BorderBrush="#DDD"
                 BorderThickness="1"
                 CornerRadius="5"
                 Padding="15"
-                Grid.Row="3"
-                Margin="0,20,0,0">
+                Grid.Column="1"
+                Margin="20,0,0,0">
             <StackPanel>
                 <TextBlock Text="Output:"
                            Classes="SectionHeaderTextBlock"/>
