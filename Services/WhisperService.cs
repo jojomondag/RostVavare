@@ -10,24 +10,29 @@ namespace RöstVävare.Services
     public class WhisperService
     {
         private readonly string _modelPath;
+        private readonly GgmlType _ggmlType;
 
-        public WhisperService(string modelPath = "ggml-large-v3-turbo.bin")
+        public WhisperService(string modelPath = "ggml-large-v3-turbo.bin", GgmlType ggmlType = GgmlType.LargeV3Turbo)
         {
             _modelPath = modelPath;
+            _ggmlType = ggmlType;
         }
 
-        public Task DownloadModelAsync()
+        public async Task DownloadModelIfNotPresent()
         {
             if (!File.Exists(_modelPath))
             {
-                throw new FileNotFoundException($"Model file '{_modelPath}' not found. Please ensure it is placed in the correct directory.");
+                await ModelDownloader.DownloadModel(_modelPath, _ggmlType);
             }
             else
             {
                 Console.WriteLine($"Using existing model file {_modelPath}.");
             }
+        }
 
-            return Task.CompletedTask;
+        public async Task DownloadModelAsync()
+        {
+            await DownloadModelIfNotPresent();
         }
 
         public string? LanguageIdentification(string fileName, string language = "auto")
