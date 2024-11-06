@@ -134,7 +134,7 @@
             </Border>
 
             <!-- New Component -->
-            <components:MyNewComponent Margin="0,20,0,0"/>
+            <components:MicrofoneComponent Margin="0,20,0,0"/>
         </StackPanel>
 
         <!-- Output Section -->
